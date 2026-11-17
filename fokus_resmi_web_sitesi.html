@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOKUS | Resmi Web Sitesi</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Orbitron (Fütüristik başlıklar) & Inter (Okunaklı metinler) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Orbitron', 'sans-serif'],
+                    },
+                    colors: {
+                        neon: {
+                            DEFAULT: '#22c55e',
+                            bright: '#4ade80',
+                            glow: '#00ff66',
+                            dark: '#052e16'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Neon Efektleri */
+        .neon-text {
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.7), 0 0 25px rgba(0, 255, 102, 0.4);
+        }
+
+        .neon-box {
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.35), inset 0 0 15px rgba(0, 255, 102, 0.2);
+        }
+
+        .neon-box:hover {
+            box-shadow: 0 0 35px rgba(0, 255, 102, 0.75), inset 0 0 20px rgba(0, 255, 102, 0.4);
+        }
+
+        .logo-glow {
+            box-shadow: 0 0 40px rgba(0, 255, 102, 0.45), 0 0 80px rgba(34, 197, 94, 0.2);
+        }
+
+        /* Arka Plan Izgara ve Parlama Dokusu */
+        .bg-cyber-grid {
+            background-image: 
+                radial-gradient(circle at 50% 30%, rgba(0, 255, 102, 0.12) 0%, transparent 60%),
+                linear-gradient(rgba(0, 255, 102, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 102, 0.04) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+        }
+
+        /* Özel Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #15803d;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00ff66;
+        }
+    </style>
+</head>
+<body class="bg-cyber-grid min-h-screen flex flex-col selection:bg-neon-glow selection:text-black">
+
+    <!-- ===================================================================== -->
+    <!-- 1. GİRİŞ EKRANI (SPLASH SCREEN) - ORTADA LOGO VE "BAŞLAYALIM" YAZISI   -->
+    <!-- ===================================================================== -->
+    <div id="splash-screen" class="fixed inset-0 z-50 bg-[#050505] bg-cyber-grid flex flex-col items-center justify-center p-6 transition-all duration-700 ease-in-out">
+        <!-- Dairesel Neon Yeşil FOKUS Logosu -->
+        <div class="relative mb-10 animate-float">
+            <div class="w-48 h-48 sm:w-64 sm:h-64 rounded-full p-1 bg-gradient-to-tr from-green-600 via-neon-glow to-emerald-400 logo-glow flex items-center justify-center overflow-hidden">
+                <!-- Yüklenen Görsel + Yedek Özel Neon SVG -->
+                <img 
+                    src="Gemini_Generated_Image_u259ctu259ctu259.jpg" 
+                    alt="FOKUS Logo" 
+                    class="w-full h-full object-cover rounded-full bg-black"
+                    onerror="this.style.display='none'; document.getElementById('splash-svg-fallback').classList.remove('hidden');"
+                >
+                <!-- Görsel yüklenemezse birebir aynı tarzda çalışan yedek vektörel logo -->
+                <div id="splash-svg-fallback" class="hidden w-full h-full rounded-full bg-black flex items-center justify-center relative overflow-hidden">
+                    <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(0,255,102,0.35)_0%,rgba(0,0,0,0.95)_75%)]"></div>
+                    <svg viewBox="0 0 240 240" class="w-full h-full relative z-10">
+                        <defs>
+                            <filter id="neonGlow" x="-30%" y="-30%" width="160%" height="160%">
+                                <feGaussianBlur stdDeviation="4" result="blur" />
+                                <feMerge>
+                                    <feMergeNode in="blur" />
+                                    <feMergeNode in="SourceGraphic" />
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <circle cx="120" cy="120" r="112" fill="none" stroke="#00ff66" stroke-width="2" opacity="0.5"/>
+                        <text x="50%" y="54%" text-anchor="middle" fill="none" stroke="#00ff66" stroke-width="2.5" font-family="Orbitron, sans-serif" font-weight="900" font-size="38" letter-spacing="2" transform="skewX(-10)" transform-origin="120 120" filter="url(#neonGlow)">FOKUS</text>
+                        <text x="50%" y="54%" text-anchor="middle" fill="#eafff2" font-family="Orbitron, sans-serif" font-weight="900" font-size="38" letter-spacing="2" transform="skewX(-10)" transform-origin="120 120" opacity="0.9">FOKUS</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ortada "BAŞLAYALIM" Butonu -->
+        <button 
+            id="start-btn"
+            onclick="enterSite()"
+            class="group relative px-10 py-4 sm:px-14 sm:py-5 rounded-full bg-black/80 border-2 border-neon-glow text-neon-glow font-display font-extrabold text-xl sm:text-2xl tracking-widest uppercase neon-box transition-all duration-300 hover:bg-neon-glow hover:text-black hover:scale-105 active:scale-95 cursor-pointer"
+        >
+            <span class="relative z-10 flex items-center gap-3">
+                BAŞLAYALIM
+                <svg class="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+            </span>
+        </button>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 2. ANA SİTE İÇERİĞİ ("BAŞLAYALIM" TIKLANDIKTAN SONRA AÇILIR)          -->
+    <!-- ===================================================================== -->
+    <div id="main-content" class="hidden opacity-0 transition-opacity duration-700 flex-col min-h-screen">
+        
+        <!-- ÜST MENÜ (NAVBAR) - SAĞ TARAFTA "ULAŞIN" BUTONU -->
+        <header class="sticky top-0 z-40 w-full bg-black/80 backdrop-blur-md border-b border-green-500/20">
+            <div class="max-w-6xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+                <!-- Sol Taraf: Küçük Logo ve Marka Adı -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-full p-0.5 bg-gradient-to-tr from-green-600 to-neon-glow shadow-[0_0_15px_rgba(0,255,102,0.5)] overflow-hidden">
+                        <img 
+                            src="Gemini_Generated_Image_u259ctu259ctu259.jpg" 
+                            alt="FOKUS Mini Logo" 
+                            class="w-full h-full object-cover rounded-full bg-black"
+                            onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+                        >
+                        <div class="hidden w-full h-full rounded-full bg-black flex items-center justify-center font-display font-black text-xs text-neon-glow">
+                            FK
+                        </div>
+                    </div>
+                    <span class="font-display font-black text-2xl tracking-wider text-white group-hover:text-neon-glow transition-colors neon-text">
+                        FOKUS
+                    </span>
+                </a>
+
+                <!-- Sağ Taraf: "ULAŞIN" Butonu (Tıklanınca en alta kaydırır) -->
+                <button 
+                    onclick="scrollToContact()"
+                    class="px-6 py-2.5 sm:px-8 sm:py-3 rounded-full bg-green-950/60 border border-neon-glow text-neon-glow font-display font-bold text-sm sm:text-base tracking-wider uppercase neon-box hover:bg-neon-glow hover:text-black transition-all duration-300 active:scale-95 cursor-pointer"
+                >
+                    ULAŞIN
+                </button>
+            </div>
+        </header>
+
+        <!-- ORTA ALAN (HERO SECTION) -->
+        <main class="flex-grow flex flex-col items-center justify-center px-4 py-16 sm:py-24 text-center max-w-4xl mx-auto">
+            <!-- Merkez Logo Vurgusu -->
+            <div class="w-40 h-40 sm:w-52 sm:h-52 rounded-full p-1 bg-gradient-to-tr from-green-600 via-neon-glow to-emerald-400 logo-glow mb-8 overflow-hidden">
+                <img 
+                    src="Gemini_Generated_Image_u259ctu259ctu259.jpg" 
+                    alt="FOKUS Ana Logo" 
+                    class="w-full h-full object-cover rounded-full bg-black"
+                    onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+                >
+                <div class="hidden w-full h-full rounded-full bg-black flex items-center justify-center">
+                    <span class="font-display font-black text-3xl text-neon-glow neon-text">FOKUS</span>
+                </div>
+            </div>
+
+            <h1 class="font-display font-black text-4xl sm:text-6xl tracking-tight text-white mb-4">
+                HOŞ GELDİNİZ <span class="text-neon-glow neon-text">FOKUS</span>
+            </h1>
+            <p class="text-gray-400 text-base sm:text-lg max-w-xl mb-10 leading-relaxed">
+                Enerji, hız ve odaklanma burada birleşiyor. Sosyal medya hesaplarımızdan içeriklerimizi takip edebilir veya bizimle doğrudan iletişime geçebilirsiniz.
+            </p>
+
+            <!-- Hızlı Aksiyon Butonu -->
+            <button 
+                onclick="scrollToContact()"
+                class="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl bg-white/5 border border-green-500/30 text-gray-200 hover:border-neon-glow hover:text-neon-glow transition-all duration-300 cursor-pointer"
+            >
+                <span>İletişim ve Sosyal Medya Bilgileri</span>
+                <svg class="w-5 h-5 animate-bounce text-neon-glow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </button>
+        </main>
+
+        <!-- ===================================================================== -->
+        <!-- 3. EN ALT BÖLÜM (FOOTER / İLETİŞİM) - GMAIL, TIKTOK VE INSTAGRAM       -->
+        <!-- ===================================================================== -->
+        <footer id="contact-section" class="w-full bg-black/90 border-t border-green-500/30 pt-14 pb-12 px-4 sm:px-8 mt-auto">
+            <div class="max-w-5xl mx-auto flex flex-col items-center text-center">
+                
+                <span class="text-xs font-display tracking-[0.3em] text-neon-glow uppercase mb-2">
+                    BİZE ULAŞIN
+                </span>
+                <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white mb-10">
+                    İLETİŞİM & SOSYAL MEDYA
+                </h2>
+
+                <!-- İletişim Kartları Grid (Gmail + TikTok + Instagram) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-12">
+                    
+                    <!-- 1. GMAIL KARTI -->
+                    <div class="bg-[#0a0f0c] border border-green-500/30 hover:border-neon-glow rounded-2xl p-6 sm:p-7 flex flex-col items-center justify-between transition-all duration-300 neon-box">
+                        <div class="flex flex-col items-center">
+                            <!-- Gmail İkonu -->
+                            <div class="w-14 h-14 rounded-2xl bg-green-500/10 border border-green-500/40 flex items-center justify-center mb-4 text-neon-glow">
+                                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-display font-bold text-lg text-white mb-1">GMAIL</h3>
+                            <p class="text-gray-400 text-xs mb-4">E-posta ile doğrudan ulaşın</p>
+                        </div>
+
+                        <div class="w-full flex flex-col items-center gap-3">
+                            <a 
+                                href="mailto:altunomur61@gmail.com" 
+                                class="text-neon-glow font-semibold text-sm sm:text-base break-all hover:underline"
+                            >
+                                altunomur61@gmail.com
+                            </a>
+                            <button 
+                                onclick="copyEmail()"
+                                class="w-full py-2.5 px-4 rounded-xl bg-green-950/70 hover:bg-neon-glow hover:text-black border border-green-500/40 text-xs font-display font-bold tracking-wider uppercase transition-all duration-200 cursor-pointer"
+                            >
+                                ADRESİ KOPYALA
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 2. TIKTOK KARTI (Logo + Altında Link) -->
+                    <div class="bg-[#0a0f0c] border border-green-500/30 hover:border-neon-glow rounded-2xl p-6 sm:p-7 flex flex-col items-center justify-between transition-all duration-300 neon-box">
+                        <div class="flex flex-col items-center">
+                            <!-- TikTok Logosu -->
+                            <a 
+                                href="https://www.tiktok.com/@fokus_ae53" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                aria-label="FOKUS TikTok Hesabı"
+                                class="w-14 h-14 rounded-2xl bg-green-500/10 border border-green-500/40 hover:bg-neon-glow hover:text-black text-neon-glow flex items-center justify-center mb-4 transition-all duration-300 hover:scale-110"
+                            >
+                                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                                </svg>
+                            </a>
+                            <h3 class="font-display font-bold text-lg text-white mb-1">TIKTOK</h3>
+                            <p class="text-gray-400 text-xs mb-4">Videolarımızı izleyin</p>
+                        </div>
+
+                        <!-- Altında TikTok Linki -->
+                        <div class="w-full flex flex-col items-center gap-3">
+                            <a 
+                                href="https://www.tiktok.com/@fokus_ae53" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="text-neon-glow font-semibold text-xs sm:text-sm break-all hover:underline"
+                            >
+                                https://www.tiktok.com/@fokus_ae53
+                            </a>
+                            <a 
+                                href="https://www.tiktok.com/@fokus_ae53" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="w-full py-2.5 px-4 rounded-xl bg-green-950/70 hover:bg-neon-glow hover:text-black border border-green-500/40 text-xs font-display font-bold tracking-wider uppercase transition-all duration-200 text-center"
+                            >
+                                TIKTOK'A GİT
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 3. INSTAGRAM KARTI (Logo + Altında Link) -->
+                    <div class="bg-[#0a0f0c] border border-green-500/30 hover:border-neon-glow rounded-2xl p-6 sm:p-7 flex flex-col items-center justify-between transition-all duration-300 neon-box">
+                        <div class="flex flex-col items-center">
+                            <!-- Instagram Logosu -->
+                            <a 
+                                href="https://www.instagram.com/fokus_ftbl/" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                aria-label="FOKUS Instagram Hesabı"
+                                class="w-14 h-14 rounded-2xl bg-green-500/10 border border-green-500/40 hover:bg-neon-glow hover:text-black text-neon-glow flex items-center justify-center mb-4 transition-all duration-300 hover:scale-110"
+                            >
+                                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </a>
+                            <h3 class="font-display font-bold text-lg text-white mb-1">INSTAGRAM</h3>
+                            <p class="text-gray-400 text-xs mb-4">Paylaşımlarımızı takip edin</p>
+                        </div>
+
+                        <!-- Altında Instagram Linki -->
+                        <div class="w-full flex flex-col items-center gap-3">
+                            <a 
+                                href="https://www.instagram.com/fokus_ftbl/" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="text-neon-glow font-semibold text-xs sm:text-sm break-all hover:underline"
+                            >
+                                https://www.instagram.com/fokus_ftbl/
+                            </a>
+                            <a 
+                                href="https://www.instagram.com/fokus_ftbl/" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="w-full py-2.5 px-4 rounded-xl bg-green-950/70 hover:bg-neon-glow hover:text-black border border-green-500/40 text-xs font-display font-bold tracking-wider uppercase transition-all duration-200 text-center"
+                            >
+                                INSTAGRAM'A GİT
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Alt Telif Hakkı -->
+                <div class="w-full pt-6 border-t border-white/10 text-gray-500 text-xs sm:text-sm">
+                    © 2026 <span class="text-neon-glow font-display font-bold">FOKUS</span>. Tüm hakları saklıdır.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Kopyalama Bildirim Mesajı (Toast) -->
+    <div id="toast-message" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-black border border-neon-glow text-neon-glow px-5 py-3 rounded-xl shadow-[0_0_20px_rgba(0,255,102,0.5)] font-display text-xs sm:text-sm tracking-wider flex items-center gap-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+        </svg>
+        <span>Gmail adresi kopyalandı!</span>
+    </div>
+
+    <!-- Etkileşim Komut Dosyaları -->
+    <script>
+        // "BAŞLAYALIM" butonuna basıldığında giriş ekranını kapatıp ana siteyi açar
+        function enterSite() {
+            const splash = document.getElementById('splash-screen');
+            const main = document.getElementById('main-content');
+
+            splash.classList.add('opacity-0', 'scale-105', 'pointer-events-none');
+
+            setTimeout(() => {
+                splash.style.display = 'none';
+                main.classList.remove('hidden');
+                main.classList.add('flex');
+                
+                requestAnimationFrame(() => {
+                    main.classList.remove('opacity-0');
+                    main.classList.add('opacity-100');
+                });
+            }, 500);
+        }
+
+        // Sağ üstteki "ULAŞIN" butonuna basıldığında en alttaki iletişim alanına yumuşakça kaydırır
+        function scrollToContact() {
+            const contactSection = document.getElementById('contact-section');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }
+        }
+
+        // Gmail adresini panoya kopyalar ve bildirim gösterir
+        function copyEmail() {
+            const email = 'altunomur61@gmail.com';
+            const tempInput = document.createElement('input');
+            tempInput.value = email;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            const toast = document.getElementById('toast-message');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
